@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ShoppeeAPI.Models.OrderDetails>
+
+@{
+    ViewData["Title"] = "ListOrdeDetails";
+}
+
+<h1>ListOrdeDetails</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quanity)
+            </th>
+            <th>Address</th>
+            <th>
+                Total Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quanity)
+            </td>
+           <td>
+                    @Html.DisplayFor(modelItem => item.Order.Address)
+           </td>
+            <th>
+                    @{
+                        float TotalPrice = @item.Product.Price * @item.Quanity;
+                    }
+                    @TotalPrice
+            </th>
+        </tr>
+}
+    </tbody>
+</table>

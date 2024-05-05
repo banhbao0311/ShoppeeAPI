@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ShoppeeAPI.Models.Cart>
+
+@{
+    ViewData["Title"] = "ListCarts";
+}
+
+<h1>ListCarts</h1>
+
+<form asp-action="CreateOrder" asp-asp-controller="Product">
+    <label>Nhap Address</label>
+    <input name="Address" value="@ViewBag.Address" />
+    <input type="submit"/>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quanity)
+            </th>
+            <th>
+                Total Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quanity)
+            </td>
+            <td>
+                    @{
+                        float TotalPrice = @item.Product.Price * @item.Quanity;
+                    }
+                    @TotalPrice
+            </td>
+            <td>
+                @Html.ActionLink("EditCart", "EditCart", new { id=item.Id }) |
+                    @Html.ActionLink("DeleteCart", "DeleteCart", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
