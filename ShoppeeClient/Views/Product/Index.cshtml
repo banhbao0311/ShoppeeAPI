@@ -14,10 +14,11 @@
 }
 else
 {
-    <p>Xin chao @ViewBag.Fullname </p> <a asp-action="Logout" asp-controller="Customer">Logout</a>
+    <p>Xin chao @ViewBag.Fullname </p> 
+    <a asp-action="Logout" asp-controller="Customer"> Logout </a>
+    <a asp-action="ListCarts" asp-controller="Product"> GoToListCarts </a>
+    <a asp-action="ListOrdeDetails" asp-controller="Product"> GoToListOrdeDetails</a>
 }
-| <a asp-action="ListCarts" asp-controller="Product">GoToListCarts</a> 
-| <a asp-action="ListOrdeDetails" asp-controller="Product">GoToListOrdeDetails</a>
 <table class="table">
     <thead>
         <tr>
